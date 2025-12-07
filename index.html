@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lumière Room Experience</title>
+    <title>LumiPly | Smart Room Visualizer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -15,18 +15,13 @@
       }
       /* Custom Scrollbar for sleek look - Light Mode */
       ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
-      ::-webkit-scrollbar-track {
+        width: 0px; /* Hidden scrollbar for cleaner UI */
         background: transparent;
       }
-      ::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 0, 0, 0.2);
+      
+      /* Smooth transitions */
+      .ease-apple {
+        transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
       }
       
       /* Cover Flow 3D Perspective */
@@ -44,6 +39,16 @@
       * {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Subtle floating animation */
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+      }
+      .animate-float-slow {
+        animation: float 6s ease-in-out infinite;
       }
     </style>
   <script type="importmap">

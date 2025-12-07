@@ -72,13 +72,6 @@ const App: React.FC = () => {
           timestamp: Date.now()
         };
         currentResults = [...currentResults, newImage];
-        // We can update state here if we want real-time addition, 
-        // but for smoother UX usually better to show spinner then all, 
-        // OR add one by one. The CoverFlow expects an array. 
-        // Let's add them to state only at the end to prevent jumpy UI, 
-        // or we could show them appearing. Let's stick to batch for now or 
-        // pass partials if we want. For simplicity, we wait for all, 
-        // but update progress bar.
       }
       
       completedSteps++;
@@ -106,12 +99,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen bg-[#f5f5f7] text-gray-900 font-sans selection:bg-blue-200 selection:text-blue-900">
-      {/* Background Gradient Mesh - Light Mode */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-[20%] -left-[10%] w-[800px] h-[800px] bg-blue-200/40 blur-[120px] rounded-full opacity-60 mix-blend-multiply"></div>
-        <div className="absolute top-[20%] -right-[10%] w-[600px] h-[600px] bg-purple-200/40 blur-[120px] rounded-full opacity-60 mix-blend-multiply"></div>
-        <div className="absolute -bottom-[20%] left-[20%] w-[600px] h-[600px] bg-pink-200/40 blur-[120px] rounded-full opacity-60 mix-blend-multiply"></div>
+    <div className="flex h-screen w-screen bg-[#f5f5f7] text-gray-900 font-sans selection:bg-blue-200 selection:text-blue-900 overflow-hidden">
+      {/* Background Gradient Mesh - Dynamic & Subtle */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-30%] left-[-20%] w-[1000px] h-[1000px] bg-blue-100/50 blur-[150px] rounded-full mix-blend-multiply animate-float-slow"></div>
+        <div className="absolute bottom-[-30%] right-[-20%] w-[1000px] h-[1000px] bg-purple-100/50 blur-[150px] rounded-full mix-blend-multiply animate-float-slow" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-[40%] left-[40%] w-[600px] h-[600px] bg-pink-100/30 blur-[150px] rounded-full mix-blend-multiply animate-float-slow" style={{ animationDelay: '4s' }}></div>
       </div>
 
       {/* Left Panel: Products */}
@@ -135,8 +128,9 @@ const App: React.FC = () => {
       
       {/* API Key Warning */}
       {!process.env.API_KEY && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/80 text-red-500 px-6 py-3 rounded-2xl shadow-xl backdrop-blur-md text-sm font-semibold border border-red-100 z-50">
-          ⚠️ Setup Required: Add your API_KEY to environment variables.
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/90 text-red-500 px-6 py-3 rounded-full shadow-2xl backdrop-blur-xl text-sm font-bold border border-red-100 z-50 flex items-center gap-2 animate-pulse">
+          <span className="w-2 h-2 rounded-full bg-red-500"></span>
+          Setup Required: Add your API_KEY to environment variables.
         </div>
       )}
     </div>
